@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+
 import 'package:flutter_project/routes/routes.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -167,8 +169,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     child: TextButton(
                       onPressed: () {
-                        Navigator.of(context)
-                            .pushReplacementNamed(Routes.registerScreen);
+                        Navigator.pop(context);
+
+                        Navigator.of(context).pushNamed(Routes.registerScreen);
                       },
                       child: Text(
                         "Sign up",
