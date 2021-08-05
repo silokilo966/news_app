@@ -212,28 +212,4 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return null;
   }
-
-//   _loginAuth() async {
-//     try {
-//       await FirebaseAuth.instance.signInWithEmailAndPassword(
-//           email: emailController.text, password: passController.text);
-//       Navigator.of(context).pushNamed(Routes.homePage);
-  // } on FirebaseAuthException catch (e) {
-  //   switch (e.code) {
-  //     case 'invalid-email':
-  //       message = 'Error: Invalid Email!';
-  //       break;
-  //     case 'user-disabled':
-  //       message = 'Error: User disabled!';
-  //       break;
-  //     case 'user-not-found':
-  //       message = 'Error: User not found!';
-  //       break;
-  //     case 'wrong-password':
-  //       message = 'Error: Wrong Password';
-  //       break;
-  //   }
-//     }
-//   }
-// }
 }
