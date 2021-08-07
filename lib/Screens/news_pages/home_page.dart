@@ -14,32 +14,26 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            alignment: Alignment.topRight,
+            child: ElevatedButton(
+              child: Text("Sign Out"),
+              onPressed: () {
+                signOut();
+                Navigator.of(context).pushReplacementNamed(Routes.loginScreen);
+              },
+            ),
+          ),
+        ),
         Container(
           padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
           alignment: Alignment.topCenter,
           child: Text(
             "Home Page",
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Center(
-          child: Text("Welcome ${FirebaseAuth.instance.currentUser!.email}"),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Center(
-          child: ElevatedButton(
-            child: Text("Sign Out"),
-            onPressed: () {
-              signOut();
-              Navigator.of(context).pushReplacementNamed(Routes.loginScreen);
-            },
           ),
         ),
       ],
