@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
           title: "MyApp",
           initialRoute: FirebaseAuth.instance.currentUser == null
               ? Routes.loginScreen
-              : Routes.homePage,
+              : Routes.applePage,
           onGenerateRoute: Routes.generateRoute,
         );
       },

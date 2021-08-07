@@ -5,11 +5,11 @@ class Defaults {
   static final Color drawerSelectedItemColor = Colors.blue.shade700;
 
   static final drawerItemsText = [
-    'Inbox',
-    'Starred',
-    'Send',
-    'Drafts',
-    'Trash',
+    'Apple',
+    'Tesla',
+    'Business',
+    'TechCrunch',
+    'WallStreet Journal',
   ];
 
   static final drawerItemsIcon = [
@@ -21,35 +21,3 @@ class Defaults {
   ];
 }
 
-var indexClicked = 0;
-
-class Pages extends StatefulWidget {
-  const Pages({Key? key}) : super(key: key);
-
-  @override
-  _PagesState createState() => _PagesState();
-}
-
-class _PagesState extends State<Pages> {
-  final drawerPages = [
-    Center(
-      child: Text("inbox"),
-    ),
-    Center(
-      child: Text("Starred"),
-    ),
-    Center(
-      child: Text("Sent"),
-    ),
-    Center(
-      child: Text("Drafts"),
-    ),
-    Center(
-      child: Text("Trash"),
-    ),
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}

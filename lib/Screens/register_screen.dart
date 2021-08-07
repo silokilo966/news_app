@@ -123,8 +123,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             try {
                               await FirebaseAuth.instance
                                   .createUserWithEmailAndPassword(
-                                email: _emailController.text,
-                                password: _passController.text,
+                                email: _emailController.text.trim(),
+                                password: _passController.text.trim(),
                               );
 
                               Navigator.of(context)

@@ -129,10 +129,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             try {
                               await FirebaseAuth.instance
                                   .signInWithEmailAndPassword(
-                                      email: _emailController.text,
-                                      password: _passController.text);
+                                      email: _emailController.text.trim(),
+                                      password: _passController.text.trim());
                               Navigator.of(context)
-                                  .pushReplacementNamed(Routes.homePage);
+                                  .pushReplacementNamed(Routes.applePage);
                             } on FirebaseAuthException catch (e) {
                               switch (e.code) {
                                 case 'invalid-email':
