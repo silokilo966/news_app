@@ -126,6 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 email: _emailController.text,
                                 password: _passController.text,
                               );
+
                               Navigator.of(context)
                                   .pushReplacementNamed(Routes.loginScreen);
                             } on FirebaseAuthException catch (e) {
