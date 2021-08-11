@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/Data/news_data.dart';
 import 'package:flutter_project/routes/routes.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await FirebaseAuth.instance.authStateChanges().first;
   runApp(MyApp());
 }
 
@@ -28,15 +29,42 @@ class _MyAppState extends State<MyApp> {
             //Todo Add splashscreen
           );
         }
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: "MyApp",
-          initialRoute: FirebaseAuth.instance.currentUser == null
-              ? Routes.loginScreen
-              : Routes.applePage,
-          onGenerateRoute: Routes.generateRoute,
+
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (context) => NewsData(),
+              builder: (context, child) {
+                return MaterialApp(
+                  navigatorObservers: [NavObserver()],
+                  debugShowCheckedModeBanner: false,
+                  title: "MyApp",
+                  initialRoute: FirebaseAuth.instance.currentUser == null
+                      ? Routes.loginScreen
+                      : Routes.applePage,
+                  onGenerateRoute: Routes.generateRoute,
+                );
+              },
+            ),
+          ],
         );
       },
+    );
+  }
+}
+
+class NavObserver extends NavigatorObserver {
+  @override
+  void didPush(Route route, Route? previousRoute) {
+    print(
+      'DID PUSH: Route = ${route.settings.name} PreviousRoute = ${previousRoute?.settings.name}',
+    );
+  }
+
+  @override
+  void didReplace({Route? newRoute, Route? oldRoute}) {
+    print(
+      'DID REPLACE: NewRoute = ${newRoute?.settings.name} PreviousRoute = ${oldRoute?.settings.name}',
     );
   }
 }

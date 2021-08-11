@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_project/routes/routes.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -131,8 +130,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   .signInWithEmailAndPassword(
                                       email: _emailController.text.trim(),
                                       password: _passController.text.trim());
-                              Navigator.of(context)
-                                  .pushReplacementNamed(Routes.applePage);
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  Routes.applePage, (route) => false);
                             } on FirebaseAuthException catch (e) {
                               switch (e.code) {
                                 case 'invalid-email':
@@ -201,15 +200,6 @@ class _LoginScreenState extends State<LoginScreen> {
     if (formPass == null || formPass.isEmpty) {
       return 'Password cannot be empty!';
     }
-    //   String pattern =
-    //       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_!@#\$&*~]).{8,}$';
-    //   RegExp regEx = RegExp(pattern);
-    //   if (!regEx.hasMatch(formPass))
-    //     return '''
-    // Password must be atleast 8 characters,
-    // include an uppercase letter, number and symbol.
-    //     ''';
-
     return null;
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/Screens/home_page.dart';
 
-import 'drawer_model.dart';
+import '../models/drawer_model.dart';
 
 class DrawerListTile extends StatelessWidget {
   const DrawerListTile({

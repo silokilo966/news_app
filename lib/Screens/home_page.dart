@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/models/pages_data.dart';
+import 'package:flutter_project/Data/news_data.dart';
+import 'package:flutter_project/Data/pages_data.dart';
 import 'package:flutter_project/routes/routes.dart';
+import 'package:provider/provider.dart';
 
 class DrawerPages extends StatefulWidget {
   const DrawerPages({Key? key}) : super(key: key);
@@ -12,27 +14,6 @@ class DrawerPages extends StatefulWidget {
 
 var indexClicked = 0;
 
-final pages = [
-  Center(
-    child: Text('Inbox'),
-  ),
-  Center(
-    child: Text('Starred'),
-  ),
-  Center(
-    child: Text('Sent'),
-  ),
-  Center(
-    child: Text('Drafts'),
-  ),
-  Center(
-    child: Text('Trash'),
-  ),
-  Center(
-    child: Text('Spam'),
-  ),
-];
-
 //Todo Change the Drawer items color
 //todo change the signout color
 //Todo change the Drawer to 3d
@@ -40,6 +21,7 @@ final pages = [
 class _DrawerPagesState extends State<DrawerPages> {
   @override
   Widget build(BuildContext context) {
+    context.read<NewsData>().initialValues();
     return Drawer(
       child: Column(
         children: [
@@ -59,7 +41,7 @@ class _DrawerPagesState extends State<DrawerPages> {
                       indexClicked = 0;
                     });
                     Navigator.pop(context);
-                    Navigator.pushReplacementNamed(context, '/ApplePage');
+                    Navigator.pushReplacementNamed(context, '/');
                   },
                 ),
                 DrawerListTile(
@@ -110,8 +92,8 @@ class _DrawerPagesState extends State<DrawerPages> {
                   height: 30,
                 ),
                 TextButton(
-                  onPressed: () {
-                    signOut();
+                  onPressed: () async {
+                    await signOut();
                     Navigator.of(context)
                         .pushReplacementNamed(Routes.loginScreen);
                   },
