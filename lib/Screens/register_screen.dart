@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/routes/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
+  final _usernameController = TextEditingController();
   String _message = '';
   final _formKey = GlobalKey<FormState>();
   bool _isLoggingIn = false;
@@ -19,6 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
@@ -49,6 +52,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               SizedBox(
                 height: 64,
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
+                child: TextFormField(
+                  //validator: validateEmail,
+                  controller: _usernameController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 1.5)),
+                      labelText: 'Username',
+                      labelStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[600])),
+                ),
               ),
               Container(
                 padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
@@ -121,11 +140,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           });
                           if (_formKey.currentState!.validate()) {
                             try {
-                              await FirebaseAuth.instance
+                              final UserCredential user = await FirebaseAuth
+                                  .instance
                                   .createUserWithEmailAndPassword(
                                 email: _emailController.text.trim(),
                                 password: _passController.text.trim(),
                               );
+                              await firestore
+                                  .collection("users")
+                                  .doc("${user.user?.uid}")
+                                  .set({
+                                "username": _usernameController.text.trim(),
+                                "email": _emailController.text.trim()
+                              });
 
                               Navigator.of(context)
                                   .pushReplacementNamed(Routes.loginScreen);

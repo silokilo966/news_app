@@ -25,7 +25,11 @@ class _TeslaPageState extends State<TeslaPage> {
       child: Scaffold(
         key: _scaffoldKey,
         drawer: DrawerPages(),
-        body: NewsWidget(scaffoldKey: _scaffoldKey, dateToday: dateToday),
+        body: RefreshIndicator(
+            onRefresh: () async {
+              await context.read<NewsData>().fetchData(newsApiLink: teslaAPI);
+            },
+            child: NewsWidget(scaffoldKey: _scaffoldKey, dateToday: dateToday)),
       ),
     );
   }

@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/Data/news_data.dart';
 import 'package:flutter_project/Data/pages_data.dart';
 import 'package:flutter_project/routes/routes.dart';
-import 'package:provider/provider.dart';
 
 class DrawerPages extends StatefulWidget {
   const DrawerPages({Key? key}) : super(key: key);
@@ -21,7 +19,6 @@ var indexClicked = 0;
 class _DrawerPagesState extends State<DrawerPages> {
   @override
   Widget build(BuildContext context) {
-    context.read<NewsData>().initialValues();
     return Drawer(
       child: Column(
         children: [

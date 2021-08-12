@@ -25,7 +25,13 @@ class _BusinessPageState extends State<BusinessPage> {
       child: Scaffold(
         key: _scaffoldKey,
         drawer: DrawerPages(),
-        body: NewsWidget(scaffoldKey: _scaffoldKey, dateToday: dateToday),
+        body: RefreshIndicator(
+            onRefresh: () async {
+              await context
+                  .read<NewsData>()
+                  .fetchData(newsApiLink: businessAPI);
+            },
+            child: NewsWidget(scaffoldKey: _scaffoldKey, dateToday: dateToday)),
       ),
     );
   }
