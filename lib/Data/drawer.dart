@@ -24,7 +24,6 @@ class _DrawerPagesState extends State<DrawerPages> {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       context.read<UserName>().getUserName();
-      
     });
   }
 
