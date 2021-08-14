@@ -21,7 +21,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    FirebaseAuth _auth = FirebaseAuth.instance;
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
@@ -56,7 +57,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Container(
                 padding: EdgeInsets.fromLTRB(22, 0, 22, 0),
                 child: TextFormField(
-                  //validator: validateEmail,
                   controller: _usernameController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -140,13 +140,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           });
                           if (_formKey.currentState!.validate()) {
                             try {
-                              final UserCredential user = await FirebaseAuth
-                                  .instance
-                                  .createUserWithEmailAndPassword(
+                              final UserCredential user =
+                                  await _auth.createUserWithEmailAndPassword(
                                 email: _emailController.text.trim(),
                                 password: _passController.text.trim(),
                               );
-                              await firestore
+                              await _firestore
                                   .collection("users")
                                   .doc("${user.user?.uid}")
                                   .set({

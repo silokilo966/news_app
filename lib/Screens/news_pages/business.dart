@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/Data/news_data.dart';
 import 'package:flutter_project/Data/news_widgets.dart';
-import 'package:flutter_project/Screens/home_page.dart';
+import 'package:flutter_project/Data/drawer.dart';
 import 'package:provider/provider.dart';
 
 class BusinessPage extends StatefulWidget {

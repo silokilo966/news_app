@@ -14,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isLoggingIn = false;
   Color _greenColor = Color(0xff00D959);
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +127,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                           if (_formKey.currentState!.validate()) {
                             try {
-                              await FirebaseAuth.instance
-                                  .signInWithEmailAndPassword(
-                                      email: _emailController.text.trim(),
-                                      password: _passController.text.trim());
+                              await _auth.signInWithEmailAndPassword(
+                                  email: _emailController.text.trim(),
+                                  password: _passController.text.trim());
+
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                   Routes.applePage, (route) => false);
                             } on FirebaseAuthException catch (e) {

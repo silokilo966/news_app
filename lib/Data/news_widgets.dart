@@ -51,7 +51,7 @@ class NewsWidget extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.fromLTRB(110, 30, 0, 0),
                       decoration:
-                          BoxDecoration(color: Colors.blue.withAlpha(15)),
+                          BoxDecoration(color: Colors.lightGreen.withAlpha(40)),
                       width: 392,
                       height: 87,
                       child: Text(
@@ -91,7 +91,10 @@ class NewsWidget extends StatelessWidget {
           Consumer<NewsData>(
             builder: (context, value, child) {
               return value.map.length == 0 && !value.error
-                  ? CircularProgressIndicator()
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 260),
+                      child: CircularProgressIndicator(),
+                    )
                   : value.error
                       ? Text(
                           "${value.errorMessage}",

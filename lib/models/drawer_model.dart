@@ -13,11 +13,10 @@ class Defaults {
   ];
 
   static final drawerItemsIcon = [
-    Icons.inbox,
-    Icons.star,
-    Icons.send,
-    Icons.mail,
-    Icons.delete,
+    Icons.apps_outlined,
+    Icons.car_rental,
+    Icons.business,
+    Icons.new_label_sharp,
+    Icons.book,
   ];
 }
-
