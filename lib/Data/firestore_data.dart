@@ -22,6 +22,3 @@ class UserName with ChangeNotifier {
     });
   }
 }
-
-
-
