@@ -28,12 +28,22 @@ class NewsWidget extends StatelessWidget {
                       width: 50,
                       height: 50,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: Colors.grey.shade400,
-                            width: 2,
-                          )),
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(18),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade500,
+                                offset: Offset(4.0, 4.0),
+                                blurRadius: 15.0,
+                                spreadRadius: 1.0),
+                            BoxShadow(
+                                color: Colors.white,
+                                offset: Offset(-4.0, -4.0),
+                                blurRadius: 15.0,
+                                spreadRadius: 1.0)
+                          ]),
                       child: IconButton(
                         onPressed: () {
                           _scaffoldKey.currentState!.openDrawer();
@@ -49,17 +59,28 @@ class NewsWidget extends StatelessWidget {
                   IgnorePointer(
                     ignoring: true,
                     child: Container(
-                      padding: const EdgeInsets.fromLTRB(110, 30, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(110, 0, 0, 0),
                       decoration:
-                          BoxDecoration(color: Colors.lightGreen.withAlpha(40)),
+                          BoxDecoration(color: Colors.white.withAlpha(40)),
                       width: 392,
                       height: 87,
-                      child: Text(
-                        "News Today",
-                        style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey[700]),
+                      child: Row(
+                        children: [
+                          Text(
+                            "News",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.blue[700]),
+                          ),
+                          Text(
+                            "Today",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey[700]),
+                          ),
+                        ],
                       ),
                     ),
                   ),
