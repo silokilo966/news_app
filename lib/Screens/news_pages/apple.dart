@@ -16,10 +16,8 @@ class _ApplePageState extends State<ApplePage> {
   DateTime dateToday =
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
   String appleAPI =
-      'https://newsapi.org/v2/everything?q=apple&from=2021-08-11&to=2021-08-11&sortBy=popularity&apiKey=c0557e054b524723917f9baed16dba4e';
+      'https://newsapi.org/v2/everything?q=apple&from=2021-08-14&to=2021-08-14&sortBy=popularity&apiKey=c0557e054b524723917f9baed16dba4e';
 
-  
-  
   @override
   Widget build(BuildContext context) {
     context.read<NewsData>().fetchData(newsApiLink: appleAPI);

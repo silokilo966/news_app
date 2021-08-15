@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/Data/firestore_data.dart';
+import 'package:flutter_project/Data/news_data.dart';
 import 'package:flutter_project/Data/pages_data.dart';
 import 'package:flutter_project/routes/routes.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +35,7 @@ class _DrawerPagesState extends State<DrawerPages> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           DrawerHeader(
+            margin: EdgeInsets.zero,
             decoration: BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.fill,
@@ -46,7 +48,7 @@ class _DrawerPagesState extends State<DrawerPages> {
                   backgroundImage: NetworkImage(
                       'https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_0.jpg'),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 1),
                 Consumer<UserName>(
                   builder: (context, value, child) {
                     return value.user == null
@@ -56,18 +58,17 @@ class _DrawerPagesState extends State<DrawerPages> {
                               Text(
                                 "${value.user!['username']}",
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 25,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
                                 "${value.user!['email']}",
                                 style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                ),
+                                    fontSize: 17,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ],
                           );
@@ -90,6 +91,7 @@ class _DrawerPagesState extends State<DrawerPages> {
                       });
                       Navigator.pop(context);
                       Navigator.pushReplacementNamed(context, '/');
+                      context.read<NewsData>().initialValues();
                     },
                   ),
                   DrawerListTile(
@@ -100,6 +102,7 @@ class _DrawerPagesState extends State<DrawerPages> {
                       });
                       Navigator.pop(context);
                       Navigator.pushReplacementNamed(context, '/TeslaPage');
+                      context.read<NewsData>().initialValues();
                     },
                   ),
                   DrawerListTile(
@@ -110,6 +113,7 @@ class _DrawerPagesState extends State<DrawerPages> {
                       });
                       Navigator.pop(context);
                       Navigator.pushReplacementNamed(context, '/BusinessPage');
+                      context.read<NewsData>().initialValues();
                     },
                   ),
                   DrawerListTile(
@@ -121,6 +125,7 @@ class _DrawerPagesState extends State<DrawerPages> {
                       Navigator.pop(context);
                       Navigator.pushReplacementNamed(
                           context, '/TechCrunchPage');
+                      context.read<NewsData>().initialValues();
                     },
                   ),
                   DrawerListTile(
@@ -132,6 +137,7 @@ class _DrawerPagesState extends State<DrawerPages> {
                       Navigator.pop(context);
                       Navigator.pushReplacementNamed(
                           context, '/WallStreetPage');
+                      context.read<NewsData>().initialValues();
                     },
                   ),
                   SizedBox(
@@ -146,6 +152,7 @@ class _DrawerPagesState extends State<DrawerPages> {
                       await signOut();
                       Navigator.of(context)
                           .pushReplacementNamed(Routes.loginScreen);
+                      context.read<NewsData>().initialValues();
                     },
                     child: Text(
                       "Sign Out",
