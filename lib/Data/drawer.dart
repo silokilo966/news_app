@@ -28,6 +28,8 @@ class _DrawerPagesState extends State<DrawerPages> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -59,9 +61,9 @@ class _DrawerPagesState extends State<DrawerPages> {
                               Text(
                                 "${value.user!['username']}",
                                 style: TextStyle(
-                                  fontSize: 25,
+                                  fontSize: 23,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               Text(

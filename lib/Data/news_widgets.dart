@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_project/Screens/webview_page.dart';
 import 'package:provider/provider.dart';
 import 'news_data.dart';
 
@@ -98,6 +100,24 @@ class NewsWidget extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(300, 0, 0, 0),
+                    child: IconButton(
+                        onPressed: () {
+                          try {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => WebViewPage(),
+                                ));
+                          } on PlatformException catch (e) {
+                            print('Error....');
+                            print(e.toString());
+                            print(e);
+                          }
+                        },
+                        icon: Icon(Icons.ac_unit)),
+                  )
                 ],
               ),
             ],
@@ -164,11 +184,14 @@ class NewsCard extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                "${map['title']}",
-                style: TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.w800,
+              InkWell(
+                onTap: () {},
+                child: Text(
+                  "${map['title']}",
+                  style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
               const SizedBox(
