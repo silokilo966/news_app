@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
               create: (context) => NewsData(),
               builder: (context, child) {
                 return MaterialApp(
+                  
                   navigatorObservers: [NavObserver()],
                   debugShowCheckedModeBanner: false,
                   title: "MyApp",
