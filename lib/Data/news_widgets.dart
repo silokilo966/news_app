@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/Screens/news_pages/newspage_clicked.dart';
+import 'package:flutter_project/Screens/news_pages/viewpage.dart';
 import 'package:provider/provider.dart';
 import 'news_data.dart';
 
@@ -99,7 +99,6 @@ class NewsWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
                 ],
               ),
             ],
@@ -171,14 +170,11 @@ class NewsCard extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Text(
-                    "${map['title']}",
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.w800,
-                    ),
+                Text(
+                  "${map['title']}",
+                  style: TextStyle(
+                    fontSize: 23,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
                 const SizedBox(

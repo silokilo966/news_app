@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ViewPage extends StatelessWidget {
+class ViewPage extends StatefulWidget {
+  ViewPage({Key? key, required this.map}) : super(key: key);
   final Map<String, dynamic> map;
-  ViewPage({
-    Key? key,
-    required this.map,
-  }) : super(key: key);
 
+  @override
+  _ViewPageState createState() => _ViewPageState();
+}
+
+class _ViewPageState extends State<ViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,19 +16,22 @@ class ViewPage extends StatelessWidget {
         leading: BackButton(
           color: Colors.black,
         ),
-        backgroundColor: Colors.white,
-        title: Text("Test"),
+        backgroundColor: Colors.white.withAlpha(500),
+        title: Text(
+          "News Today",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: SingleChildScrollView(
         child: Card(
           elevation: 1,
           child: Column(
             children: [
-              Image.network("${map['urlToImage']}"),
+              Image.network("${widget.map['urlToImage']}"),
               Padding(
                 padding: const EdgeInsets.fromLTRB(5, 4, 0, 0),
                 child: Text(
-                  "${map['title']}",
+                  "${widget.map['title']}",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -41,7 +46,7 @@ class ViewPage extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text("${map['author']}",
+                      Text("${widget.map['author']}",
                           style: TextStyle(
                               fontSize: 19, fontWeight: FontWeight.w400)),
                     ],
@@ -52,14 +57,14 @@ class ViewPage extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
                 child: Container(
                     alignment: Alignment.topLeft,
-                    child: Text("${map['publishedAt']}")),
+                    child: Text("${widget.map['publishedAt']}")),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "${map['description']}",
+                      "${widget.map['description']}",
                       style: TextStyle(fontSize: 22),
                     )),
               ),
@@ -68,7 +73,7 @@ class ViewPage extends StatelessWidget {
                 child: Container(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "${map['content']}",
+                      "${widget.map['content']}",
                       style: TextStyle(fontSize: 22),
                     )),
               ),
@@ -77,7 +82,7 @@ class ViewPage extends StatelessWidget {
                 child: Container(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "${map['description']}",
+                      "${widget.map['description']}",
                       style: TextStyle(fontSize: 22),
                     )),
               )

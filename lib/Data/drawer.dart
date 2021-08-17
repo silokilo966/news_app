@@ -29,59 +29,12 @@ class _DrawerPagesState extends State<DrawerPages> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-
-          DrawerHeader(
-            margin: EdgeInsets.zero,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage(
-                        'https://www.wallpapertip.com/wmimgs/75-755354_background-image-for-navigation-drawer.png'))),
-            child: Column(
-              children: [
-                CircleAvatar(
-                  radius: 40,
-                  backgroundImage: NetworkImage(
-                      'https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_0.jpg'),
-                ),
-                SizedBox(height: 1),
-                Consumer<UserName>(
-                  builder: (context, value, child) {
-                    return value.user == null
-                        ? CircularProgressIndicator()
-                        : Column(
-                            children: [
-                              Text(
-                                "${value.user!['username']}",
-                                style: TextStyle(
-                                  fontSize: 23,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Text(
-                                "${value.user!['email']}",
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
-                          );
-                  },
-                ),
-              ],
-            ),
-          ),
-
           DrawerHeaderWidget(),
           Expanded(
             child: Container(
