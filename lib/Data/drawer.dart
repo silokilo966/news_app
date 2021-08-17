@@ -23,6 +23,7 @@ class _DrawerPagesState extends State<DrawerPages> {
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       context.read<UserName>().getUserName();
     });
@@ -32,9 +33,9 @@ class _DrawerPagesState extends State<DrawerPages> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
-        //a
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+
           DrawerHeader(
             margin: EdgeInsets.zero,
             decoration: BoxDecoration(
@@ -78,6 +79,8 @@ class _DrawerPagesState extends State<DrawerPages> {
               ],
             ),
           ),
+
+          DrawerHeaderWidget(),
           Expanded(
             child: Container(
               color: Colors.lightGreen[100],
@@ -174,5 +177,54 @@ class _DrawerPagesState extends State<DrawerPages> {
 
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
+  }
+}
+
+class DrawerHeaderWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return DrawerHeader(
+      margin: EdgeInsets.zero,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image: NetworkImage(
+                  'https://www.wallpapertip.com/wmimgs/75-755354_background-image-for-navigation-drawer.png'))),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 40,
+            backgroundImage: NetworkImage(
+                'https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_0.jpg'),
+          ),
+          SizedBox(height: 1),
+          Consumer<UserName>(
+            builder: (context, value, child) {
+              return value.user == null
+                  ? CircularProgressIndicator()
+                  : Column(
+                      children: [
+                        Text(
+                          "${value.user!['username']}",
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "${value.user!['email']}",
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    );
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

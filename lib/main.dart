@@ -41,6 +41,7 @@ class _MyAppState extends State<MyApp> {
                   navigatorObservers: [NavObserver()],
                   debugShowCheckedModeBanner: false,
                   title: "MyApp",
+                  
                   initialRoute: FirebaseAuth.instance.currentUser == null
                       ? Routes.loginScreen
                       : Routes.applePage,

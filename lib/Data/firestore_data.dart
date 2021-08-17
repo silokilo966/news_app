@@ -15,6 +15,7 @@ class UserName with ChangeNotifier {
         .then((DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
       if (documentSnapshot.exists) {
         user = documentSnapshot.data();
+        print('$user');
       } else {
         print("Data doesn't exist");
       }
@@ -22,3 +23,4 @@ class UserName with ChangeNotifier {
     });
   }
 }
+
