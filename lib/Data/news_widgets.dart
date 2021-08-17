@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/Screens/news_pages/newspage_clicked.dart';
 import 'package:provider/provider.dart';
 import 'news_data.dart';
 
@@ -98,6 +99,7 @@ class NewsWidget extends StatelessWidget {
                       ),
                     ),
                   ),
+                  
                 ],
               ),
             ],
@@ -148,40 +150,49 @@ class NewsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Card(
-        elevation: 10,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.network(
-                '${map['urlToImage']}',
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.network('https://via.placeholder.com/350x150');
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                "${map['title']}",
-                style: TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.w800,
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => ViewPage(map: map)));
+        },
+        child: Card(
+          elevation: 10,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.network(
+                  '${map['urlToImage']}',
+                  errorBuilder: (context, error, stackTrace) {
+                    return Image.network('https://via.placeholder.com/350x150');
+                  },
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                '${map['description']}',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
+                const SizedBox(
+                  height: 10,
                 ),
-              ),
-            ],
+                InkWell(
+                  onTap: () {},
+                  child: Text(
+                    "${map['title']}",
+                    style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  '${map['description']}',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
