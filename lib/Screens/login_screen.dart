@@ -147,6 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 case 'wrong-password':
                                   _message = 'Error: Incorrect Password';
                                   break;
+                              
                               }
                             }
                           }
