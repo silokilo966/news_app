@@ -143,20 +143,18 @@ class DrawerHeaderWidget extends StatelessWidget {
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
-              image: NetworkImage(
-                  'https://www.wallpapertip.com/wmimgs/75-755354_background-image-for-navigation-drawer.png'))),
+              image: AssetImage('assets/images/drawerheaderpic.png'))),
       child: Column(
         children: [
           CircleAvatar(
             radius: 40,
-            backgroundImage: NetworkImage(
-                'https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_0.jpg'),
+            backgroundImage: AssetImage('assets/images/profilepic.jpg'),
           ),
           SizedBox(height: 1),
           Consumer<UserName>(
             builder: (context, value, child) {
               return value.user == null
-                  ? CircularProgressIndicator()
+                  ? Text("")
                   : Column(
                       children: [
                         Text(

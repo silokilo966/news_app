@@ -23,4 +23,3 @@ class UserName with ChangeNotifier {
     });
   }
 }
-

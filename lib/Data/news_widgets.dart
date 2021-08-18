@@ -151,6 +151,9 @@ class NewsCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () {
+          // Navigator.of(context).push(MaterialPageRoute(
+          //   builder: (context) => NewPageClicked(),
+          // ));
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => ViewPage(map: map)));
         },
