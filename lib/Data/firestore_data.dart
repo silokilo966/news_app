@@ -10,12 +10,12 @@ class UserName with ChangeNotifier {
   Future<void> getUserName() {
     return _firestore
         .collection('users')
-        .doc(_auth.currentUser!.uid)
+        .doc(_auth.currentUser?.uid)
         .get()
         .then((DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
       if (documentSnapshot.exists) {
         user = documentSnapshot.data();
-        print('$user');
+        print('GetUserName: $user');
       } else {
         print("Data doesn't exist");
       }
