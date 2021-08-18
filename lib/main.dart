@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/Data/firestore_data.dart';
 import 'package:flutter_project/Data/news_data.dart';
 import 'package:flutter_project/routes/routes.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +32,7 @@ class _MyAppState extends State<MyApp> {
 
         return MultiProvider(
           providers: [
-            ChangeNotifierProvider(create: (context) => UserName()),
+            //ChangeNotifierProvider(create: (context) => UserName()),
             ChangeNotifierProvider(
               create: (context) => NewsData(),
               builder: (context, child) {

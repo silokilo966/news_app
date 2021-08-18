@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project/Data/firestore_data.dart';
 import 'package:flutter_project/Data/news_data.dart';
 import 'package:flutter_project/Data/pages_data.dart';
 import 'package:flutter_project/routes/routes.dart';
@@ -15,17 +14,13 @@ class DrawerPages extends StatefulWidget {
 
 var indexClicked = 0;
 
-//Todo Change the Drawer items color
-//todo change the signout color
-//Todo change the Drawer to 3d
-
 class _DrawerPagesState extends State<DrawerPages> {
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      context.read<UserName>().getUserName();
+      //context.read<UserName>().getUserName();
     });
   }
 
@@ -138,6 +133,8 @@ class _DrawerPagesState extends State<DrawerPages> {
 class DrawerHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //String userName;
+
     return DrawerHeader(
       margin: EdgeInsets.zero,
       decoration: BoxDecoration(
@@ -151,31 +148,32 @@ class DrawerHeaderWidget extends StatelessWidget {
             backgroundImage: AssetImage('assets/images/profilepic.jpg'),
           ),
           SizedBox(height: 1),
-          Consumer<UserName>(
-            builder: (context, value, child) {
-              return value.user == null
-                  ? Text("")
-                  : Column(
-                      children: [
-                        Text(
-                          "${value.user!['username']}",
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          "${value.user!['email']}",
-                          style: TextStyle(
-                              fontSize: 17,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    );
-            },
-          ),
+
+          // Consumer<UserName>(
+          //   builder: (context, value, child) {
+          //     return value.user == null
+          //         ? Text("")
+          //         : Column(
+          //             children: [
+          //               Text(
+          //                 "${value.user!['username']}",
+          //                 style: TextStyle(
+          //                   fontSize: 25,
+          //                   color: Colors.white,
+          //                   fontWeight: FontWeight.bold,
+          //                 ),
+          //               ),
+          //               Text(
+          //                 "${value.user!['email']}",
+          //                 style: TextStyle(
+          //                     fontSize: 17,
+          //                     color: Colors.white,
+          //                     fontWeight: FontWeight.w500),
+          //               ),
+          //             ],
+          //           );
+          //   },
+          // ),
         ],
       ),
     );
